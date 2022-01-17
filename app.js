@@ -19,7 +19,7 @@ const commandLineInput = yargs(hideBin(process.argv)).argv;
 
 const { Movie } = require("./models/models");
 const connection = require("./db/connection");
-const { addMovie, listMovies, updateMovies, findMovie, delMovie } = require("./utils/index");
+const { addMovie, listMovies, findActor, updateMovies, findMovie, delMovie } = require("./utils/index");
 const { command } = require("yargs");
 
 const app = async (commandLineInput) => {
@@ -40,10 +40,11 @@ const app = async (commandLineInput) => {
                 });
         } else if (commandLineInput.list) {
             await listMovies();
-        } else if (commandLineInput.find) {
+        } else if (commandLineInput.findmovie) {
             await findMovie();
-        }
-        else if (commandLineInput.update) {
+        } else if (commandLineInput.findactor) {
+            await findActor();
+        } else if (commandLineInput.update) {
             await updateMovies(
                 {
                     title: commandLineInput.title,
